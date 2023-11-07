@@ -25,6 +25,8 @@ const images = [
 
 console.log(images);
 
+// IMMAGINI PRINCIPALI
+
 // inizializzo ciò che andrà in html
 let stringImageForHtml = "";
 
@@ -37,15 +39,34 @@ const divSlider = document.querySelector(".items");
 
 // inserisco la stringa
 divSlider.innerHTML += stringImageForHtml;
-console.log(divSlider);
+
+// THUMBNAILS
+
+// inizializzo ciò che andrà in thumbnails
+let stringThumbForHtml = "";
+
+images.forEach((element) => {
+    stringThumbForHtml += oneThumb(element);
+});
+
+// seleziono dove devo inserire le thumb
+const divThumb = document.querySelector(".thumbnails");
+
+// inserisco le thumb
+divThumb.innerHTML += stringThumbForHtml;
+
+// FUNZIONAMENTO SLIDER
 
 // seleziono tutti i div con le immagini
 const slide = document.querySelectorAll(".item");
-console.log(slide);
+
+// seleziono tutti i div con le thumb
+const slideThumb = document.querySelectorAll(".thumb");
 
 // inserisco la classe active nel primo elemento
 let index = 0;
 slide[index].classList.add("active");
+slideThumb[index].classList.add("active");
 
 // inserisco la classe active nello slide
 document.querySelector(".next").addEventListener
@@ -80,24 +101,32 @@ document.querySelector(".items").addEventListener("mouseleave", function() {
 function next(){
     if(index < images.length - 1) {
         slide[index].classList.remove("active");
+        slideThumb[index].classList.remove("active");
         index++;
         slide[index].classList.add("active");
+        slideThumb[index].classList.add("active");
     } else {
         slide[index].classList.remove("active");
+        slideThumb[index].classList.remove("active");
         index = 0;
         slide[index].classList.add("active");
+        slideThumb[index].classList.add("active");
     }
 }
 
 function prec() {
     if(index > 0){
         slide[index].classList.remove("active");
+        slideThumb[index].classList.remove("active");
         index--;
         slide[index].classList.add("active");
+        slideThumb[index].classList.add("active");
     } else {
         slide[index].classList.remove("active");
+        slideThumb[index].classList.remove("active");
         index = images.length -1;
-        slide[index].classList.add("active");        
+        slide[index].classList.add("active");  
+        slideThumb[index].classList.add("active");      
     }
 }
 
